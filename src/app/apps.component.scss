@@ -1,5 +1,5 @@
 ::ng-deep .mat-menu-panel.auth-menu {
-    max-width: 100%!important; 
+    max-width: 100%!important;
     min-width: 128px!important;
     width: 90%;
 }
@@ -12,19 +12,6 @@
 
     .container {
 
-        &::before {
-            position: absolute;
-            display: inline-block;
-            background-image: url("/assets/img/brand/logo.svg");
-            background-size: contain;
-            background-repeat: no-repeat;
-            height: 33vh;    
-            content: "";
-            width: 19vw;
-            left: 5%;
-            top: 20px;
-        }
-
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -32,12 +19,37 @@
         align-items: center;
         height: 100%;
 
+        .brand-logo {
+            position: absolute;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            height: 33vh;
+            width: 19vw;
+            left: 5%;
+            top: 20px;
+        }
+
         .container-header {
             position: absolute;
+            width: 50vw;
             top: 0;
             right: 0;
             margin: 10px 20px;
 
+            .mat-button {
+                width: 100%;
+                display: flex;
+                max-width: 285px;
+                margin-left: auto;
+
+                ::ng-deep .mat-button-wrapper {
+                    display: inline-block;
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
         }
     }
 
@@ -48,18 +60,43 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        max-width: 50%;
-        margin: auto;
-    }
+        max-width: 1024px;
+        margin: max(25vh, 100px) auto auto;
 
-    div.app {
-        flex: 0 1 25%;
-        margin: 20px;
-        min-width: 135px;
-    }
+        div.app {
+            padding: 15px;
+            @media only screen and (max-width: 339px) {
+                flex: 0 1 100%;
+            }
 
-    div.app button {
-        width: 100%;
-        height: 60px;
+            @media only screen and (min-width: 340px) {
+                flex: 0 1 80%;
+                max-width: 80%;
+            }
+
+            @media only screen and (min-width: 768px) {
+                flex: 0 1 50%;
+                max-width: 50%;
+            }
+
+            @media only screen and (min-width: 1024px) {
+                flex: 0 1 33%;
+                max-width: 33%;
+            }
+
+            button {
+                width: 100%;
+                height: 70px;
+                display: flex;
+                align-items: center;
+
+                ::ng-deep .mat-button-wrapper {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                }
+
+            }
+        }
     }
 }

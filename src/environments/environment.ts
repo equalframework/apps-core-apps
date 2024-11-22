@@ -3,11 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  parent_domain:  'wharn.com',
-  backend_url:  'https://api.wharn.com',
-  rest_api_url: 'https://api.wharn.com/v1'  
-
+    production: false,
 };
 
 /*

@@ -13,11 +13,8 @@ import { AppRootComponent } from './app.root.component';
 import { SharedLibModule, AuthInterceptorService } from 'sb-shared-lib';
 
 
-
-
 /* HTTP requests interception dependencies */
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
 
 
 @NgModule({

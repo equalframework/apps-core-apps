@@ -1,6 +1,7 @@
 <div class="container">
-    <div class="container-header" style="width: 300px;">
-        <button mat-button [matMenuTriggerFor]="auth_menu"><strong>{{user.name}}</strong> ({{user.login}})</button>
+    <div class="brand-logo" [style.background-image]="'url(' + url_brand_logo + ')'"></div>
+    <div class="container-header">
+        <button mat-button [matMenuTriggerFor]="auth_menu" title="{{user.login}}"><strong>{{user.name}} ({{user.login}})</strong></button>
         <mat-menu #auth_menu="matMenu" class="auth-menu" backdropClass="auth-menu">
             <button mat-menu-item (click)="onclickDisconnect()">Se déconnecter</button>
         </mat-menu>
@@ -11,9 +12,42 @@
                 <button mat-raised-button
                         [ngClass]="app"
                         color="primary"
-                        [style]="'background-color: '+apps[app].color"
+                        [style.background-color]="getColor(app)"
+                        [style.color]="getTextColor(app)"
                         (click)="onSelect(app)">
-                    <mat-icon>{{apps[app].icon}}</mat-icon> {{apps[app].name | translate}}
+                    <div style="
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background: linear-gradient(transparent, #00000018);
+                        border-radius: 4px;
+                    "></div>
+                    <div style="
+                        width: 40px;
+                        height: 40px;
+                        border: solid 2px white;
+                        background-color: white;
+                        margin-right: 10px;
+                        border-radius: 8px;">
+                        <mat-icon [ngStyle]="{'color': getColor(app)}" style="margin: 6px;">{{apps[app].icon}}</mat-icon>
+                    </div>
+                    <div style="
+                        display: flex;
+                        flex-direction: column;
+                        overflow: hidden;">
+                        <div style="
+                            height: 18px;
+                            text-align: left;
+                            font-size: 18px;
+                            text-overflow: ellipsis;">{{apps[app].name}}</div>
+                        <div style="
+                            text-align: left;
+                            font-size: 11px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;">{{apps[app].description}}</div>
+                    </div>
                 </button>
             </div>
         </ng-container>
