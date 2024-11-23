@@ -72,6 +72,13 @@ export class AppsComponent implements OnInit {
         return text_color;
     }
 
+    public getUserName() {
+        if(this.user.hasOwnProperty('name') && this.user.hasOwnProperty('login')) {
+            return this.user.name + ' (' + this.user.login + ')';
+        }
+        return '';
+    }
+
     public isGranted(app_name:string) {
         let app = this.apps[app_name];
         if(app.access?.groups && app.show_in_apps) {

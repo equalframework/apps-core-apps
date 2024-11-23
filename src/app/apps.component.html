@@ -1,7 +1,7 @@
 <div class="container">
     <div class="brand-logo" [style.background-image]="'url(' + url_brand_logo + ')'"></div>
     <div class="container-header">
-        <button mat-button [matMenuTriggerFor]="auth_menu" title="{{user.login}}"><strong>{{user.name}} ({{user.login}})</strong></button>
+        <button mat-button [matMenuTriggerFor]="auth_menu" title="{{user.login}}"><strong>{{getUserName()}}</strong></button>
         <mat-menu #auth_menu="matMenu" class="auth-menu" backdropClass="auth-menu">
             <button mat-menu-item (click)="onclickDisconnect()">Se déconnecter</button>
         </mat-menu>
@@ -41,7 +41,7 @@
                             height: 18px;
                             text-align: left;
                             font-size: 18px;
-                            text-overflow: ellipsis;">{{apps[app].name}}</div>
+                            text-overflow: ellipsis;">{{apps[app].name | translate}}</div>
                         <div style="
                             text-align: left;
                             font-size: 11px;
