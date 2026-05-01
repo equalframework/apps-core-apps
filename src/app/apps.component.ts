@@ -34,8 +34,7 @@ export class AppsComponent implements OnInit {
 
         try {
             const environment = await this.env.getEnv();
-            // #memo - env has a default app_logo_url, so we should always get a value
-            this.url_brand_logo = environment.app_logo_url;
+            this.url_brand_logo = environment.app_logo_url || '';
         }
         catch(response) {
             console.warn('unable to retrieve brand logo', response);
@@ -47,7 +46,7 @@ export class AppsComponent implements OnInit {
             });
     }
 
-    public getApps() {
+    public getAppsNames() {
         if(this.apps) {
             return Object?.keys(this.apps);
         }
@@ -79,11 +78,15 @@ export class AppsComponent implements OnInit {
         return '';
     }
 
-    public isGranted(app_name:string) {
+    public isGranted(app_name: string, system_area: boolean = false) {
+        const system_apps = ['settings', 'workbench', 'welcome'];
+        if(!system_area && system_apps.includes(app_name)) {
+            return false;
+        }
         let app = this.apps[app_name];
         if(app.access?.groups && app.show_in_apps) {
             for(let group of app.access.groups) {
-                if(this.auth.hasGroup(group)) {
+                if(this.auth.hasGroup(group) && (!system_area || system_apps.includes(app_name))) {
                     return true;
                 }
             }
@@ -92,7 +95,7 @@ export class AppsComponent implements OnInit {
     }
 
     public onSelect(app: any) {
-        if(this.apps.hasOwnProperty(app)  && this.apps[app].hasOwnProperty('url')) {
+        if(this.apps.hasOwnProperty(app) && this.apps[app].hasOwnProperty('url') && this.apps[app].url.length) {
             window.location.href = this.apps[app].url;
         }
     }

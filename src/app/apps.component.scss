@@ -11,13 +11,13 @@
 :host {
 
     .container {
-
+        position: relative;
         display: flex;
         flex-direction: row;
         justify-content: center;
         width: 100%;
-        align-items: center;
-        height: 100%;
+        height: calc(100% - 100px);
+        padding-top: 180px;
 
         .brand-logo {
             position: absolute;
@@ -53,7 +53,7 @@
         }
     }
 
-    .box {
+    .box_apps {
         flex: 1;
         display: flex;
         flex-direction: row;
@@ -61,7 +61,7 @@
         align-items: center;
         flex-wrap: wrap;
         max-width: 1024px;
-        margin: max(25vh, 100px) auto auto;
+        /* margin: max(25vh, 100px) auto auto; */
 
         div.app {
             padding: 15px;
@@ -82,6 +82,53 @@
             @media only screen and (min-width: 1024px) {
                 flex: 0 1 33%;
                 max-width: 33%;
+            }
+
+            button {
+                width: 100%;
+                height: 70px;
+                display: flex;
+                align-items: center;
+
+                ::ng-deep .mat-button-wrapper {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                }
+
+            }
+        }
+    }
+
+    .box_system_apps {
+        position: fixed;
+        bottom: 0px;
+        height: 100px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+
+        div.app {
+            padding: 15px;
+            @media only screen and (max-width: 339px) {
+                flex: 0 1 100%;
+            }
+
+            @media only screen and (min-width: 340px) {
+                flex: 0 1 80%;
+                max-width: 80%;
+            }
+
+            @media only screen and (min-width: 768px) {
+                flex: 0 1 50%;
+                max-width: 50%;
+            }
+
+            @media only screen and (min-width: 1024px) {
+                flex: 1;
+                max-width: min(33%, 350px);
             }
 
             button {
